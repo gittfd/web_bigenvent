@@ -22,7 +22,6 @@ function getUserInfo(){
         // },
         success:function(res){
          if(res.status !==0) return layui.layer.msg('获取用户信息请求失败')
-           console.log(res);
            // 调用 renderAvatar 渲染用户的头像
            renderAvatar(res.data)
         },
@@ -35,7 +34,8 @@ function renderAvatar(user) {
     const name = user.nickname || user.username
     document.querySelector('#welcome').innerHTML = '欢迎&nbsp;&nbsp;' + name
     if(user.user_pic){
-        $('.layui-nav-img').src = user.user_pic
+        document.querySelector('.layui-nav .layui-nav-img').src = user.user_pic
+        document.querySelector('.layui-side .layui-nav-img').src = user.user_pic
         document.querySelector('.layui-side .text-avatar').style.display ='none'
         document.querySelector('.userinfo .text-avatar').style.display ='none'
     }else{
